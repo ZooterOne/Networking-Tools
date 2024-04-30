@@ -15,9 +15,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
     try:
         print(f'[*] Connecting to {args.ip}:{args.port}.')
         client.connect((args.ip, args.port))
-    except OSError as msg:
+    except Exception as ex:
         print(f'[!] Unable to connect to {args.ip}:{args.port}.')
-        print(f'[!] Error: {msg}.')
+        print(f'[!] Error: {ex}.')
         sys.exit()
     dataAsBytes = bytes(map(ord, args.data))
     print(f'[*] Sending data.')

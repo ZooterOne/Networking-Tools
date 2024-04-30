@@ -25,13 +25,12 @@ def executeShellCommand(cmd: str) -> bytes:
 def manageConnectionWithServer(args: argparse.Namespace) -> None:
     '''Manage connection with server.'''
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
-        client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         try:
             print(f'[*] Connecting to {args.target}:{args.port}.')
             client.connect((args.target, args.port))
-        except OSError as msg:
+        except Exception as ex:
             print(f'[!] Unable to connect to {args.target}:{args.port}.')
-            print(f'[!] Error: {msg}.')
+            print(f'[!] Error: {ex}.')
             sys.exit()
         if args.execute:
             client.send(EXECUTE_CODE)
@@ -92,12 +91,11 @@ def setupServer(args: argparse.Namespace) -> None:
     '''Setup server: listen to incoming connection.'''
     ip = socket.gethostbyname(socket.gethostname())
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
-        server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         try:
             server.bind((ip, args.port))
-        except OSError as msg:
+        except Exception as ex:
             print(f'[!] Unable to setup {ip}:{args.port} for listening.')
-            print(f'[!] Error: {msg}.')
+            print(f'[!] Error: {ex}.')
             return
         print(f'[*] Listening on {ip}:{args.port}')
         server.listen(1)
@@ -116,7 +114,7 @@ parser = argparse.ArgumentParser(prog='Netcat',
                                  epilog=textwrap.dedent('''Examples:
     Netcat -p 5555 -l                                               # listen to incoming connection
     Netcat -t 192.168.1.10 -p 5555 -e=\"cat /etc/password\"           # execute a command and send the result to the target
-    Netcat -t 192.168.1.10 -p 5555 -c                               # run a shell and connect to the target
+    Netcat -t 192.168.1.10 -p 5555 -c                               # run a shell prompt and connect to the target
                                  '''))
 parser.add_argument('-t', '--target', type=str, help='The IPv4 address to connect to.')
 parser.add_argument('-p', '--port', type=int, default=5555, help='The port number to open or connect to.')

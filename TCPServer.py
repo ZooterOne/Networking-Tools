@@ -24,9 +24,9 @@ ip = '0.0.0.0' if args.all else socket.gethostbyname(socket.gethostname())
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
     try:
         server.bind((ip, args.port))
-    except OSError as msg:
+    except Exception as ex:
         print(f'[!] Unable to setup {ip}:{args.port}.')
-        print(f'[!] Error: {msg}.')
+        print(f'[!] Error: {ex}.')
         sys.exit()
     print(f'[*] Listening on {ip}:{args.port}')
     server.listen(args.max)

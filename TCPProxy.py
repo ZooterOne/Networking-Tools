@@ -43,6 +43,7 @@ def receiveDataFrom(connection: socket.socket, timeout: int) -> bytes:
     return buffer
 
 def manageConnection(client: socket.socket, remoteHost: str, remotePort: int, receiveDataFirst: bool, timeout: int) -> None:
+    '''Manage connection with client, transferring data to/from target.'''
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as remote:
         try:
             print(f'[*] Connecting to {remoteHost}:{remotePort}.')

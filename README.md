@@ -1,4 +1,4 @@
-# Networking
+# Networking Tools
 
 Collection of Python scripts for networking.
 Based on the book [Black Hat Python](https://nostarch.com/black-hat-python2E).

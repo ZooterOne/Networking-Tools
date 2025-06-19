@@ -4,7 +4,7 @@
 
 <h1 align="center">Networking Tools</h1>
 
-## 🤔 About
+# 🤔 About
 
 Collection of Python scripts for networking.
 Based on the book [Black Hat Python](https://nostarch.com/black-hat-python2E).
@@ -15,7 +15,7 @@ Based on the book [Black Hat Python](https://nostarch.com/black-hat-python2E).
 
 <br>
 
-## 📝 TCPServer
+# 📝 TCPServer
 
 Start a server and receive data using TCP protocol.
 
@@ -37,7 +37,7 @@ __Example:__
 
 <br>
 
-## 📝 TCPClient
+# 📝 TCPClient
 
 Send data to host using TCP protocol.
 
@@ -59,7 +59,7 @@ __Example:__
 
 <br>
 
-## 📝 Netcat
+# 📝 Netcat
 
 Netcat utility for networking.
 
@@ -93,7 +93,7 @@ __Examples:__
 
 <br>
 
-## 📝 TCPProxy
+# 📝 TCPProxy
 
 Forward TCP traffic from localhost to target.
 
